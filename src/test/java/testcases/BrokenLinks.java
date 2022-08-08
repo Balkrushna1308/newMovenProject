@@ -41,29 +41,5 @@ public class BrokenLinks {
 			System.out.println(url+" is Broken");
 	}
 	}
-		@Test
-	public void findBrokenLink1() throws MalformedURLException, IOException
-	{
-		HttpURLConnection huc;
-		WebDriver driver=Utility.getDriver();
-		driver.get("http://www.facebook.com");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		List<WebElement> links = driver.findElements(By.tagName("a"));
-
-		Iterator<WebElement> it = links.iterator();
-
-		while(it.hasNext()){
-
-		String url = it.next().getAttribute("href");
-		huc=(HttpURLConnection) (new URL(url).openConnection());
-		//huc.setRequestMethod("HEAD");
-		huc.connect();
-		int resCode=huc.getResponseCode();
-		if(resCode==200)
-			System.out.println(url+ " is Valid");
-		else
-			System.out.println(url+" is Broken");
-	}
-
-}
+		
 }
